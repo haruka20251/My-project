@@ -10,8 +10,9 @@ public class MoveLeft : MonoBehaviour
     private Transform targetPosition2;//‘D2
     private Transform targetPosition3;//ŽÔ1
     private Transform targetPosition4;//ŽÔ2
-    private GameObject positionChange;
-    private PositionChange positionChangeScript;
+    //public GameObject positionChange;
+    //public Randomchest2 positionChangeScript;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +22,8 @@ public class MoveLeft : MonoBehaviour
         targetPosition2 = GameObject.Find("Line2").GetComponent<Transform>();//‘D2
         targetPosition3 =GameObject.Find("Line3"). GetComponent<Transform>();//ŽÔ1
         targetPosition4 = GameObject.Find("Line4").GetComponent<Transform>();//ŽÔ2
-        positionChange = GameObject.Find("PositionCount");
-        
+       // positionChange = GameObject.Find("TreasureChestControl");
+        //positionChangeScript = GetComponent<Randomchest2>();
 
     }
 
@@ -40,7 +41,7 @@ public class MoveLeft : MonoBehaviour
         if ((other.gameObject.tag == "LeftLine")&&(this.gameObject.tag=="boat1"))
         {
             this.gameObject.transform.position= targetPosition1.position;
-           // positionChangeScript.count1++;
+            //positionChangeScript.count1++;
 
         }
 

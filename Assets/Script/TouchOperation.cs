@@ -45,7 +45,10 @@ public class TouchOperation : MonoBehaviour
                     {
                         Debug.Log("Coin tag detected."); // 追加
 
-                        gameManager.score++;
+                        if (!gameManager.timeStop) // timeStop の確認
+                        {
+                            gameManager.score++;
+                        }
                         coin = GameObject.Find("CoinBGM");
                         coinSound = coin.GetComponent<AudioSource>();
                         coinSound.Play();
@@ -66,8 +69,10 @@ public class TouchOperation : MonoBehaviour
                     if (hit.collider.gameObject.tag == "Chest")
                     {
                         Debug.Log("Chest tag detected."); // 追加
-
-                        gameManager.score+=5;
+                        if (!gameManager.timeStop) // timeStop の確認
+                        {
+                            gameManager.score += 5;
+                        }
                         chest = GameObject.Find("ChestBGM");
                         chestAudio = chest.GetComponent<AudioSource>();
                         chestAudio.Play();

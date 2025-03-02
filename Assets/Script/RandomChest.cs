@@ -5,55 +5,55 @@ using UnityEngine;
 
 public class RandomChest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject[] movingObjects; // 動くオブジェクトの配列
-    public GameObject objectToGenerate; // 生成するオブジェクトのプレハブ
-    public float generationDelay = 15f; // 生成までの遅延時間
+    public GameObject[] movingObjects;
+    public GameObject objectToGenerate;
+    public float generationDelay = 15f;
     public GameObject world;
-    public Vector3 generationOffset = new Vector3(0, 0, 0); // 生成位置のオフセット
+    public GameObject area5;
+    public Vector3 generationOffset = new Vector3(0, 0, 0);
 
     private float startTime;
-   
-    // Start is called before the first frame update
+
     void Start()
     {
-        startTime = Time.time;
+        startTime = Time.time; // Time.time を使用
     }
 
     void Update()
     {
-        if ((Time.time - startTime >= generationDelay)&&( Time.time - startTime <= generationDelay+1.5f))
+        if (Time.time - startTime >= generationDelay) // Time.time を使用
         {
-            // 特定の位置に到達したかどうかの判定
             if (CheckMovingObjectsPosition())
             {
                 GenerateObject();
-                startTime = Time.time;
-                Debug.Log("生成した！" + Time.time);
+                startTime = Time.time; // Time.time を使用してリセット
+                Debug.Log("生成した！" + transform.position);
             }
         }
     }
+
     bool CheckMovingObjectsPosition()
     {
         foreach (GameObject obj in movingObjects)
         {
-            // 特定の位置に到達したかどうかの判定ロジックを実装
-            if (obj.transform.localPosition.x >= 40f && obj.transform.localPosition.x <= 50f)
+            Vector3 localPosition = area5.transform.InverseTransformPoint(obj.transform.position);
+            if (localPosition.x >= -5f && localPosition.x <= 5f && localPosition.y >= -5.0f && localPosition.y <= 5.0f)
             {
                 return true;
             }
         }
         return false;
     }
+
     void GenerateObject()
     {
         int randomIndex = Random.Range(0, movingObjects.Length);
         GameObject selectedObject = movingObjects[randomIndex];
 
         Vector3 spawnPosition = selectedObject.transform.position + generationOffset;
-        GameObject generatedObject = Instantiate(objectToGenerate, spawnPosition, Quaternion.identity, world.transform);
-        generatedObject.transform.SetParent(selectedObject.transform); // 動くオブジェクトの子にする
-        
+        GameObject generatedObject = Instantiate(objectToGenerate, spawnPosition+Vector3.up*0.2f, Quaternion.identity, world.transform);
+        generatedObject.transform.SetParent(selectedObject.transform);
     }
 }
+
 

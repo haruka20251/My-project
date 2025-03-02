@@ -6,9 +6,9 @@ public class MoveCloud : MonoBehaviour
 {
     private float speed;
     private float randomRangeZ1 = 3;//‰_1‚ÌZ²¶¬”ÍˆÍ
-    private float randomRangeZ2 = 4;//‰_2‚ÌZ²¶¬”ÍˆÍ
+    private float randomRangeZ2 = 3;//‰_2‚ÌZ²¶¬”ÍˆÍ
     //private float xPos;//X²‚ÌŒÅ’è’l
-    private float randomRangeY=1;//Y²¶¬”ÍˆÍ
+    private float randomRangeY=0.5f;//Y²¶¬”ÍˆÍ
     private Transform targetPosC1;//‰_1
     private Transform targetPosC2;//‰_2
     private Vector3 initialPosC1;//‰_1‚Ì‰Šú’l
@@ -29,7 +29,7 @@ public class MoveCloud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left*speed*Time.deltaTime,Space.World);
+        transform.Translate(Vector3.left*speed*Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
