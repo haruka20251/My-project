@@ -37,7 +37,9 @@ public class RandomCoin : MonoBehaviour
             Destroy(existingCoin);
             Debug.Log("Destroyed coin: " + existingCoin.name);
         }
+
         int objectsPlaced = 0;
+        specificAreaGenerated = false;
 
         // 特定のエリアにコインを1つ生成
         if (specificAreas.Length > 0 && !specificAreaGenerated) // specificAreasが存在し、まだ生成されていない場合
@@ -81,7 +83,7 @@ public class RandomCoin : MonoBehaviour
         while (attempts < maxAttempts)
         {
             float randomX = Random.Range(minBounds.x, maxBounds.x);
-            float randomY = 0.6f;
+            float randomY = Random.Range(minBounds.y, maxBounds.y);
             float randomZ = Random.Range(minBounds.z, maxBounds.z);
 
             Vector3 randomPosition = new Vector3(randomX, randomY, randomZ);
@@ -96,7 +98,7 @@ public class RandomCoin : MonoBehaviour
                 Vector3 colliderSize = collider.bounds.size;
 
                 // ボックス形状の衝突判定
-                Vector3 halfExtents = colliderSize / 2;
+                Vector3 halfExtents = colliderSize /2;
                 Quaternion orientation = collider.transform.rotation;
 
                 if (Physics.CheckBox(randomPosition, halfExtents, orientation, avoidanceLayerMask))
