@@ -85,10 +85,32 @@ public class RandomCoin : MonoBehaviour
             float randomZ = Random.Range(minBounds.z, maxBounds.z);
 
             Vector3 randomPosition = new Vector3(randomX, randomY, randomZ);
-            if (!Physics.CheckSphere(randomPosition, 2f, avoidanceLayerMask))//衝突判定
+
+            // エリア内のすべてのColliderを取得
+            Collider[] colliders = Physics.OverlapBox(area.transform.position, (maxBounds - minBounds) / 2, area.transform.rotation, avoidanceLayerMask);
+
+            bool collisionDetected = false;
+            foreach (Collider collider in colliders)
             {
-                return randomPosition; // 衝突しない位置を返す
+                // Colliderのサイズを取得
+                Vector3 colliderSize = collider.bounds.size;
+
+                // ボックス形状の衝突判定
+                Vector3 halfExtents = colliderSize / 2;
+                Quaternion orientation = collider.transform.rotation;
+
+                if (Physics.CheckBox(randomPosition, halfExtents, orientation, avoidanceLayerMask))
+                {
+                    collisionDetected = true;
+                    break;
+                }
             }
+
+            if (!collisionDetected)
+            {
+                return randomPosition;
+            }
+
             attempts++;
         }
 

@@ -13,6 +13,8 @@ public class Shine : MonoBehaviour
     void Start()
     {
         this.defaultColor = Color.red;
+        myMaterial.SetColor("_EmissionColor", Color.black); // 初期化
+        myMaterial2.SetColor("_EmissionColor", Color.black); // 初期化
 
     }
 
