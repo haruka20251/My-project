@@ -15,7 +15,7 @@ public class MoveRight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(0.5f, 1.0f);
+        speed = Random.Range(0.8f, 1.0f);
         targetPosR1 = GameObject.Find("LineR1").GetComponent<Transform>();//右車1
         targetPosR2 = GameObject.Find("LineR2").GetComponent<Transform>();//右車1
         targetPosR3 = GameObject.Find("LineR3").GetComponent<Transform>();//右船1

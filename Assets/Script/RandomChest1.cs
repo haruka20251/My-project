@@ -51,7 +51,7 @@ public class RandomChest1 : MonoBehaviour
         GameObject selectedObject = movingObjects[randomIndex];
 
         Vector3 spawnPosition = selectedObject.transform.position + generationOffset;
-        GameObject generatedObject = Instantiate(objectToGenerate, spawnPosition + Vector3.up * 0.2f, Quaternion.identity, world.transform);
+        GameObject generatedObject = Instantiate(objectToGenerate, spawnPosition + selectedObject.transform.up * 0.2f, Quaternion.identity, world.transform);
         generatedObject.transform.SetParent(selectedObject.transform);
     }
 }
