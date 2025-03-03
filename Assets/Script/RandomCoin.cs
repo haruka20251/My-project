@@ -47,7 +47,9 @@ public class RandomCoin : MonoBehaviour
             int randomIndex = Random.Range(0, specificAreas.Length);
             GameObject selectedArea = specificAreas[randomIndex];
             Vector3 randomPosition = GetRandomPositionInArea(selectedArea);
-            Instantiate(coin, randomPosition, Quaternion.identity, world.transform);
+            Quaternion initialRotation = world.transform.rotation;
+            Instantiate(coin, randomPosition, initialRotation, world.transform);
+            //Instantiate(coin, randomPosition, Quaternion.identity, world.transform);
             objectsPlaced++;
             specificAreaGenerated = true; // specificAreasÇ÷ÇÃê∂ê¨ÉtÉâÉOÇóßÇƒÇÈ
             Debug.Log("Generated coin in specific area.");
@@ -61,7 +63,9 @@ public class RandomCoin : MonoBehaviour
             int randomAreaIndex = Random.Range(0, areas.Length);
             GameObject selectedArea = areas[randomAreaIndex];
             Vector3 randomPosition = GetRandomPositionInArea(selectedArea);
-            Instantiate(coin, randomPosition, Quaternion.identity, world.transform);
+            Quaternion initialRotation = world.transform.rotation;
+            Instantiate(coin, randomPosition, initialRotation, world.transform);
+            //Instantiate(coin, randomPosition, Quaternion.identity, world.transform);
 
             objectsPlaced++;
 
