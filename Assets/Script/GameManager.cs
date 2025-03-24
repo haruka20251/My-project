@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             }
             float seconds = currentTime;
 
-            timer.text = "c‚èŠÔF" + Mathf.FloorToInt(currentTime).ToString() + "•b"; // •b”‚Ì‚İ•\¦
+            timer.text = "Time remaining:" + Mathf.FloorToInt(currentTime).ToString() + "seconds"; // •b”‚Ì‚İ•\¦
 
         }
         
